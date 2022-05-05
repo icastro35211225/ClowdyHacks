@@ -1,0 +1,77 @@
+<?php
+error_reporting(E_ALL);
+session_start();
+echo '<!DOCTYPE html>';
+echo '<html>';
+echo '<head>';
+echo '<meta charset="UTF-8">';
+echo '<title>ClowdyHacks | HOME</title>';
+echo '<link rel="stylesheet" href="./assets/css/main.css">';
+echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">';
+echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>';
+echo '</head>';
+echo '<body data-new-gr-c-s-check-loaded="14.1056.0" data-gr-ext-installed="" onload="ChangeColorOnLoad()">';
+echo '<main id="mainContent" class="container py-4">';
+echo '<header class="pb-3 mb-4 border-bottom">';
+echo '<a onclick="updateContent(\'home\')" class="align-items-center text-white text-decoration-none">';
+echo '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-cloud-arrow-down" viewBox="0 0 16 16">';
+echo '<title>ClowdyHacks</title>';
+echo '<path fill-rule="evenodd" d="M7.646 10.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 9.293V5.5a.5.5 0 0 0-1 0v3.793L6.354 8.146a.5.5 0 1 0-.708.708l2 2z"/>';
+echo '<path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>';
+echo '</svg>';
+echo '<span class="fs-4"></span>';
+echo '</a>';
+echo '<a class="px-2 align-items-center text-white text-decoration-none" href="https://github.com/Zaqttack/ClowdyHacks">';
+echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">';
+echo '<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>';
+echo '</svg>';
+echo '</a>';
+echo '</header>';
+echo '<form method="POST" action="">';
+echo '<div class="p-5 mb-4 bg-light rounded-3">';
+echo '	<div class="container-fluid py-5">';
+echo '		<h1 class="display-5 fw-bold">ClowdyHacks Downloader!</h1>';
+echo '		<p class="col-md-10 fs-4">To start, paste a url in the correct input box.</p>';
+echo '        <button class="btn btn-outline-primary btn-lg" type="button">More about us!</button>';
+echo '	</div>';
+echo '</div>';
+echo '<div id="downloaders-block" class="row align-items-md-stretch">';
+echo '	<div class="col-md-12">';
+echo '		<div class="h-100 p-5 text-white bg-gradient rounded-3">';
+echo '			<h2>YouTube</h2>';
+echo '			<h6 class="mb-2 text-dark" id="youtube-desc">paste url to download the video!</h6>';
+echo '			<div class="input-group mb-3">';
+echo '    <input type="text" class="form-control" name="utubelink" placeholder="Enter Full YouTube link">';
+echo'			</div>';
+echo'			<div class="container d-flex justify-content-end" style="padding: 0 !important">';
+echo '  <button type="submit" name="urlsubmit" class="btn btn-primary">Download</button>';
+echo'			</div>';
+echo'		</div>';
+echo'	</div>';
+echo'</div>';
+echo '</form>';
+echo '<footer id="footer" class="pt-3 mt-4 text-white border-top">';
+echo '	ClowdyHacks &copy; 2022';
+echo '</footer>';
+echo '</main>';
+echo '<main id="mainContent" class="container py-4">';
+echo '<h1 class="display-5 fw-bold">Your pre-signed URL to view/download your video will appear below! Simply copy and paste it into your browser and you\'ll be able to view it; right click and press "save video as" to download it to your local machine!</h1>';
+if(isset($_POST['urlsubmit'])){
+        $url = $_POST['utubelink'];
+        $_SESSION['url'] = $url;
+        $command = "python3 /var/www/html/pythoncloud/finalupload.py $url";
+        $output = passthru($command);
+}
+echo '</main>';
+echo '<script src="./assets/js/background.js"></script>';
+echo '<script src="./assets/js/chat.js"></script>';
+echo '</body>';
+echo '</html>';
+/*if(isset($_POST['urlsubmit'])){
+	$url = $_POST['utubelink'];
+	$_SESSION['url'] = $url;
+	$command = "python3 /var/www/html/pythoncloud/finalupload.py $url";
+	$output = passthru($command);
+	$redirect("https://ec2-18-208-211-38.compute-1.amazonaws.com/pythoncloud/youtube.php");
+}*/
+?>
